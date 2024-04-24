@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: onboarding-app-argo-config
+  namespace: argocd
+spec:
+  project: onboarding-app
+  source:
+    chart: ait-onboarding-app-chart
+    repoURL: https://github.com/propalparolnapervom/ait-onboarding-app
+    targetRevision: 0.1.0
+    helm:
+      releaseName: onboard
+      valueFiles:
+        - env/dev-values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: onboarding-app-ns
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true

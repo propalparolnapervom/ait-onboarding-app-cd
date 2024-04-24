@@ -6,13 +6,13 @@ metadata:
 spec:
   project: onboarding-app
   source:
-    chart: ait-onboarding-app-chart
-    repoURL: https://github.com/propalparolnapervom/ait-onboarding-app
-    targetRevision: 0.1.0
+    repoURL: https://github.com/propalparolnapervom/ait-onboarding-app-cd
+    targetRevision: HEAD
+    path: ait-onboarding-app-chart
     helm:
       releaseName: onboard
-      valueFiles:
-        - env/dev-values.yaml
+      valueFiles: # relative to the spec.source.path dir defined above
+        - ../env/dev-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: onboarding-app-ns

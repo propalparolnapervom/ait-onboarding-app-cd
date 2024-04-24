@@ -4,7 +4,7 @@ metadata:
   name: onboarding-app-argo-config
   namespace: argocd
 spec:
-  project: onboarding-app
+  project: default
   source:
     repoURL: https://github.com/propalparolnapervom/ait-onboarding-app-cd
     targetRevision: HEAD

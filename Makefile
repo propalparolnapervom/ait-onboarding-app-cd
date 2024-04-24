@@ -19,4 +19,4 @@ a-install:
 	kubectl apply -f argocd/argo-dev-env.yaml
 
 a-uninstall:
-	echo "Do the following:   argocd app delete-resource <APPNAME> --all"
+	echo "Do the following:   argocd app delete argocd/onboarding-app-argo-config"

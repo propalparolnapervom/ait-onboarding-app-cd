@@ -1,8 +1,22 @@
-install:
+#######
+# Helm
+#######
+h-install:
 	helm install onboard ait-onboarding-app-chart --values env/dev-values.yaml
 
-upgrade:
+h-upgrade:
 	helm upgrade onboard ait-onboarding-app-chart --values env/dev-values.yaml
 
-uninstall:
+h-uninstall:
 	helm uninstall onboard
+
+
+#########
+# ArgoCD
+#########
+
+a-install:
+	kubectl apply -f argocd/argo-dev-env.yaml
+
+a-uninstall:
+	echo "Do the following:   argocd app delete-resource <APPNAME> --all"

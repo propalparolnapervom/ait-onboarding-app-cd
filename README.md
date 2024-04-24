@@ -3,17 +3,27 @@ CD configuration for app from the ait-onboarding-app repo
 
 ## Usage
 
+### Helm
+
 Install the helm chart
 ```
-make install
+make h-install
 ```
 
 Upgrade the helm chart
 ```
-make upgrade
+make h-upgrade
 ```
 
 Uninstall the helm chart
 ```
-make uninstall
+make h-uninstall
+```
+
+
+### ArgoCD
+
+Install the helm chart
+```
+make a-install
 ```

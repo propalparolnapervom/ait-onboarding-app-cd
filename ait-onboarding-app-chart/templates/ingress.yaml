@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    alb.ingress.kubernetes.io/backend-protocol: HTTP
+    alb.ingress.kubernetes.io/group.name: {{ .Values.ingress.load_balancer_scheme }}
+    alb.ingress.kubernetes.io/healthcheck-path: /
+    alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
+    alb.ingress.kubernetes.io/healthcheck-port: "{{ .Values.service.http_targetPort }}"
+    alb.ingress.kubernetes.io/ip-address-type: ipv4
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/load-balancer-name: {{ .Values.ingress.load_balancer_name }}
+    alb.ingress.kubernetes.io/scheme: {{ .Values.ingress.load_balancer_scheme }}
+    alb.ingress.kubernetes.io/ssl-redirect: "443"
+    alb.ingress.kubernetes.io/success-codes: 200-399
+    alb.ingress.kubernetes.io/tags: Environment=test, Managed_by=helm, Project=eks_aux
+    alb.ingress.kubernetes.io/target-type: ip
+    kubernetes.io/ingress.class: alb
+  labels:
+    helm.sh/chart: {{ .Chart.Name }}
+  name: {{ .Values.ingress.name }}
+spec:
+  rules:
+  - host: {{ .Values.ingress.host }}
+    http:
+      paths:
+      - backend:
+          service:
+            name: {{ .Release.Name }}-service
+            port:
+              number: {{ .Values.service.http_port }}
+        path: /
+        pathType: Prefix

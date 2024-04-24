@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-service
+spec:
+  selector:
+    app: onboarding-app
+  type: {{ .Values.service.type }}
+  ports:
+    - name: http
+      protocol: {{ .Values.service.protocol | default "TCP" }}
+      port: {{ .Values.service.http_port }}
+      targetPort: {{ .Values.service.http_targetPort }}
+      nodePort: {{ .Values.service.http_nodePort }}

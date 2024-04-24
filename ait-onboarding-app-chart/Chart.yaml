@@ -1,0 +1,9 @@
+apiVersion: v2
+name: ait-onboarding-app-chart
+description: A Helm Chart for the ait-onboarding-app
+type: application
+version: 0.1.0
+# appVersion: "1.0.0"
+maintainers:
+- email: sergii@something.com
+  name: Sergii

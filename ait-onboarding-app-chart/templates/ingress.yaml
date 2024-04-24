@@ -19,6 +19,7 @@ metadata:
   labels:
     helm.sh/chart: {{ .Chart.Name }}
   name: {{ .Values.ingress.name }}
+  namespace: {{ .Values.namespace }}
 spec:
   rules:
   - host: {{ .Values.ingress.host }}

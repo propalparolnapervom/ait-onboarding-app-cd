@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Release.Name }}-onboarding-app
+  namespace: {{ .Values.namespace }}
   labels:
     app: onboarding-app
 spec:
